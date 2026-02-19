@@ -88,7 +88,7 @@ img {
 }
 
 .nav__logo-first {
-  color: var(--orange);
+  color: var(--dark);
 }
 
 .nav__logo-dot {
@@ -296,7 +296,7 @@ img {
 }
 
 .terminal__lines {
-  margin-top: 0;
+  margin-top: 2rem;
 }
 
 .terminal__line {
