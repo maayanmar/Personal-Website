@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeHagita — Maayan Margolin</title>
+  <meta name="description" content="VeHagita: Full-stack social Torah study platform with 23,000+ verses and 200,000+ commentary segments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script src="js/header.js"></script>
+
+  <main class="container">
+
+    <!-- Back link + Hero -->
+    <div class="sub-hero">
+      <a href="index.html" class="back-link">&larr; Back to home</a>
+      <h1>VeHagita</h1>
+      <p>A social Torah study platform where users explore Tanakh with classical commentaries and write their own insights (pirushim).</p>
+      <div class="sub-hero__links">
+        <a href="https://wehagita.com" class="btn btn--primary" target="_blank" rel="noopener">Visit wehagita.com</a>
+        <a href="https://wehagita.com/about" class="btn btn--outline" target="_blank" rel="noopener">About page</a>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#0a7ea4;">Re</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">React 18</div>
+            <div class="tech-card__role">Frontend</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#235a97;">TS</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">TypeScript</div>
+            <div class="tech-card__role">Language</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#f6821f;">V5</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Vite 5</div>
+            <div class="tech-card__role">Build tool</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#38bdf8;">Tw</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Tailwind CSS</div>
+            <div class="tech-card__role">Styling</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#1a8a4a;">Sb</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Supabase</div>
+            <div class="tech-card__role">Backend + Auth + DB</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#c45e00;">CF</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Cloudflare Pages</div>
+            <div class="tech-card__role">Hosting</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#7b2d8e;">Pw</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Playwright</div>
+            <div class="tech-card__role">E2E Testing</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card__icon" style="background:#4a4a4a;">Tp</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">Tiptap</div>
+            <div class="tech-card__role">Rich text editor</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Methodology -->
+    <section>
+      <h2 class="section-title">Development Methodology</h2>
+      <p style="color: var(--gray-600); margin-bottom: 0.75rem;">
+        Built primarily with <strong>Claude Code</strong> using MCP servers for Supabase management and Cloudflare deployment. Frontend prototyping done with <strong>Lovable</strong>, then refined and extended via Claude Code.
+      </p>
+    </section>
+
+    <!-- Platform Data -->
+    <section>
+      <h2 class="section-title">Platform Data</h2>
+      <div class="card-grid">
+        <div class="card stat-card">
+          <div class="stat-card__number">23,206</div>
+          <div class="stat-card__label">Tanakh verses</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-card__number">206,379</div>
+          <div class="stat-card__label">Commentary segments from 37+ sources</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section>
+      <h2 class="section-title">Key Features</h2>
+      <ul class="feature-list">
+        <li><strong>Infinite-scroll reader</strong> — continuous verse stream with lazy-loaded commentaries</li>
+        <li><strong>Full-text search</strong> — search across verses and commentaries</li>
+        <li><strong>Fisheye progress rail</strong> — visual chapter navigation with zoom effect</li>
+        <li><strong>Multiple commentary layouts</strong> — side-by-side, inline, and stacked views</li>
+        <li><strong>Personal insights (pirushim)</strong> — Tiptap rich text editor for writing and sharing</li>
+        <li><strong>Google OAuth</strong> — sign in to save progress and insights</li>
+        <li><strong>Offline caching</strong> — IndexedDB for previously viewed content</li>
+        <li><strong>Light &amp; dark themes</strong> — system-aware with manual toggle</li>
+        <li><strong>Performance refactor</strong> — optimized rendering and bundle splitting</li>
+        <li><strong>Migration savings</strong> — moved from Vercel to Cloudflare Pages, cutting hosting costs</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="color:var(--white);"><span class="nav__logo-first">Maayan</span> Margolin<span class="nav__logo-dot">.</span></a>
+          <p>Full-stack developer building production apps with modern tools and AI-assisted workflows.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Pages</h4>
+          <ul class="footer__nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehagita.html">VeHagita</a></li>
+            <li><a href="wordpress-security.html">WordPress Security</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="cv.html">CV</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Links</h4>
+          <ul class="footer__nav">
+            <li><a href="https://www.linkedin.com/in/maayan-margolin/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/maayanmar" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://wehagita.com" target="_blank" rel="noopener">wehagita.com</a></li>
+            <li><a href="mailto:maayan.margolin@mail.huji.ac.il">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__text">&copy; 2026 Maayan Margolin</span>
+        <span class="footer__built">Built with <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

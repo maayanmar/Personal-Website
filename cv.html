@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Maayan Margolin</title>
+  <meta name="description" content="Maayan Margolin's CV — CS graduate, Hebrew University.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cv-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .cv-section { margin-bottom: 2.25rem; }
+    .cv-section h2 { font-size: 1rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 2px solid var(--gray-200); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+    .cv-entry { margin-bottom: 1.25rem; }
+    .cv-entry:last-child { margin-bottom: 0; }
+    .cv-entry h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .cv-entry .cv-meta { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.35rem; }
+    .cv-entry ul { padding-left: 1.25rem; font-size: 0.875rem; color: var(--gray-600); line-height: 1.6; }
+    .cv-entry ul li { margin-bottom: 0.2rem; }
+    .cv-entry-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .cv-entry-row .cv-date { font-size: 0.85rem; color: var(--gray-400); white-space: nowrap; flex-shrink: 0; }
+    .cv-header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--gray-200); }
+    .cv-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .cv-header p { color: var(--gray-600); font-size: 0.95rem; }
+    .cv-header__links { display: flex; justify-content: center; gap: 1.25rem; margin-top: 0.75rem; font-size: 0.875rem; flex-wrap: wrap; }
+    .cv-download-bar { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .cv-grades { font-size: 0.85rem; color: var(--gray-600); line-height: 1.7; margin-top: 0.5rem; }
+    .cv-grades strong { color: var(--dark); font-weight: 600; }
+    .cv-highlight { color: var(--orange); font-weight: 700; }
+    .cv-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; font-size: 0.875rem; color: var(--gray-600); }
+    .cv-skills-grid dt { font-weight: 600; color: var(--dark); }
+    .cv-skills-grid dd { margin: 0 0 0.5rem; }
+    @media (max-width: 600px) { .cv-skills-grid { grid-template-columns: 1fr; } .cv-entry-row { flex-direction: column; gap: 0; } .cv-entry-row .cv-date { order: -1; } }
+    @media print { .nav, .footer, .cv-download-bar, .back-link { display: none !important; } .cv-page { padding: 0; } body { font-size: 11pt; } }
+  </style>
+</head>
+<body>
+
+  <script src="js/header.js"></script>
+
+  <div class="cv-page">
+    <a href="index.html" class="back-link">&larr; Back to home</a>
+
+    <div class="cv-download-bar">
+      <a href="Maayan_Margolin_CV_EN.docx" download class="btn btn--outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Download .docx</a>
+      <button onclick="window.print()" class="btn btn--outline" style="font-size:0.85rem;padding:0.5rem 1rem;">Print / Save PDF</button>
+    </div>
+
+    <!-- Header -->
+    <div class="cv-header">
+      <h1>Maayan Margolin</h1>
+      <p>B.Sc. Computer Science &middot; The Hebrew University of Jerusalem</p>
+      <div class="cv-header__links">
+        <a href="mailto:mm@io01.io">mm@io01.io</a>
+        <a href="https://www.linkedin.com/in/maayan-margolin/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/maayanmar" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://maayan-margolin.pages.dev" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="cv-section">
+      <h2>Education</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>B.Sc. Computer Science &mdash; The Hebrew University of Jerusalem</h3>
+          <span class="cv-date">2021&ndash;2025</span>
+        </div>
+        <p class="cv-meta">Previously enrolled in CS &amp; Computational Biology dual program</p>
+        <div class="cv-grades">
+          <strong>Core CS:</strong> Software Engineering <span class="cv-highlight">96</span>, Data Structures <span class="cv-highlight">93</span>, Nand2Tetris 90, Computer Architecture 84, Databases 83, OOP 83, Algorithms 82, Operating Systems 82<br>
+          <strong>AI &amp; Data:</strong> Algorithms in Comp. Biology 91, Quantum Computing 90, Cyber Law 88, Communication Networks 87, Machine Learning 86, Data Science 81<br>
+          <strong>Biology &amp; Chemistry:</strong> Biology <span class="cv-highlight">99</span>, Organic Chemistry <span class="cv-highlight">93</span>, 21st Century Biology 93 &amp; 90, Genetics 89
+        </div>
+      </div>
+    </div>
+
+    <!-- Ongoing Work -->
+    <div class="cv-section">
+      <h2>Ongoing Work</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>והגית &mdash; Community platform for Torah study and commentary sharing</h3>
+          <span class="cv-date"><a href="https://wehagita.com" target="_blank" rel="noopener">wehagita.com</a> &middot; Live, 40+ users</span>
+        </div>
+        <p class="cv-meta">React 18 + TypeScript + Vite | Supabase (PostgreSQL, Auth, Edge Functions, RLS) | Cloudflare Pages | Playwright</p>
+        <ul>
+          <li>Full-stack social platform with rich, accessible Tanakh reading experience, 70+ classical commentators, and user-generated insights that grow over time. Modern responsive UI with multiple themes and layouts</li>
+          <li>Built entirely with <strong>Claude Code.</strong> SE-grade standards: structured documentation, clean modular code &mdash; onboarding takes minutes. Critical when developing with AI</li>
+          <li>Previously hosted on FastAPI + GCP; migrated to Supabase for better performance, maintainability, and cost savings</li>
+          <li>Managing the product end-to-end: roadmap, user feedback, deployment, infrastructure, and security</li>
+        </ul>
+      </div>
+      <div class="cv-entry">
+        <h3>WordPress Security &mdash; WAF &amp; Automated Testing &mdash; Paid client project</h3>
+        <p class="cv-meta">Cloudflare WAF management | Cross-browser E2E testing using Playwright</p>
+        <ul>
+          <li>Designed 5-rule layered WAF defense: progressive security from bot whitelisting through geo-filtering to hostile traffic blocking</li>
+          <li>Built automated Playwright test runner validating WAF effectiveness and zero false positives across 4 browsers</li>
+          <li>Mentored by Nimrod Luria, Co-Founder at IO01</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Academic Projects -->
+    <div class="cv-section">
+      <h2>Academic Projects</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>Nand2Tetris: Complete Computer System</h3>
+          <span class="cv-date">Grade: 90 | <a href="https://github.com/maayanmar" target="_blank" rel="noopener">GitHub</a></span>
+        </div>
+        <ul>
+          <li>Built a working computer from NAND gates up: logic gates &rarr; ALU &rarr; CPU &rarr; RAM &rarr; assembler &rarr; VM &rarr; compiler &rarr; OS. HDL, Assembly, Jack</li>
+        </ul>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>Breast Cancer Classification &mdash; ML Research</h3>
+          <span class="cv-date">Grade: 91</span>
+        </div>
+        <ul>
+          <li>ML models reaching ~100% accuracy on binary cancer detection from protein expression data; multi-class staging ~70%. Python, Scikit-learn, TensorFlow</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="cv-section">
+      <h2>Technical Skills</h2>
+      <dl class="cv-skills-grid">
+        <dt>Languages</dt>
+        <dd>Python, C/C++, Java, TypeScript, JavaScript, SQL, HTML/CSS</dd>
+        <dt>Frameworks &amp; Tools</dt>
+        <dd>React, Vite, Tailwind CSS, Supabase, PostgreSQL, Cloudflare (Pages, WAF, DNS), Playwright, Git</dd>
+        <dt>AI-Assisted Development</dt>
+        <dd>Claude Code (primary dev tool &mdash; MCP integrations, multi-agent workflows). Using AI for development since GitHub Copilot's early release</dd>
+        <dt>Security</dt>
+        <dd>Cloudflare WAF design, automated security testing, vulnerability assessment, video content protection</dd>
+        <dt>Product</dt>
+        <dd>End-to-end product management &mdash; roadmap, deployment, user feedback, infrastructure</dd>
+      </dl>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="cv-section">
+      <h2>Other Work Experience</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>Private Tutor &mdash; CS, Math &amp; Sciences</h3>
+          <span class="cv-date">2023&ndash;Present</span>
+        </div>
+        <ul>
+          <li>Private tutoring for high school and pre-academic students. Since 2025: teaching Mofet 9th graders at Rabin High School via Branco Weiss / Kedem-Atidim</li>
+        </ul>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>Logistics &amp; Maintenance Officer &mdash; IDF Reserve Duty, &ldquo;Swords of Iron&rdquo; War</h3>
+          <span class="cv-date">2023&ndash;2025</span>
+        </div>
+        <ul>
+          <li>Led cross-functional teams under combat-zone pressure; streamlined logistics and maintenance systems during active operations</li>
+        </ul>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-entry-row">
+          <h3>Technical Support Specialist &mdash; Samsung (via Tikshoov)</h3>
+          <span class="cv-date">2020&ndash;2021</span>
+        </div>
+        <ul>
+          <li>Promoted within 4 months. Resolved complex technical issues; retained customers through quality communication during COVID-19</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Additional -->
+    <div class="cv-section">
+      <h2>Additional</h2>
+      <div class="cv-entry">
+        <ul>
+          <li><strong>Languages:</strong> Hebrew (native), English (fluent, Amiram 150)</li>
+          <li><strong>Volunteering:</strong> Weekly karaoke sessions for elderly residents &mdash; Nofei Gilo Assisted Living, Jerusalem (2021&ndash;2023)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="color:var(--white);"><span class="nav__logo-first">Maayan</span> Margolin<span class="nav__logo-dot">.</span></a>
+          <p>Full-stack developer building production apps with modern tools and AI-assisted workflows.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Pages</h4>
+          <ul class="footer__nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vehagita.html">VeHagita</a></li>
+            <li><a href="wordpress-security.html">WordPress Security</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="cv.html">CV</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Links</h4>
+          <ul class="footer__nav">
+            <li><a href="https://www.linkedin.com/in/maayan-margolin/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/maayanmar" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://wehagita.com" target="_blank" rel="noopener">wehagita.com</a></li>
+            <li><a href="mailto:mm@io01.io">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__text">&copy; 2026 Maayan Margolin</span>
+        <span class="footer__built">Built with <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
