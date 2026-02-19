@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private Tutoring — Maayan Margolin</title>
-  <meta name="description" content="1-on-1 tutoring in Math, Computer Science, and Sciences for middle and high school students in the Kiryat area. Free first lesson.">
-  <meta property="og:title" content="Private Tutoring — Maayan Margolin">
-  <meta property="og:description" content="1-on-1 tutoring in Math, CS, and Sciences. Structured thinking, tailored pace, real independence. Free first lesson.">
+  <title>שיעורים פרטיים — מאיין מרגולין</title>
+  <meta name="description" content="שיעורים פרטיים 1:1 במתמטיקה, מדעי המחשב ומדעים לתלמידי חטיבה ותיכון באזור קריית שמואל. מהנדס תוכנה עם תואר CS מהאוניברסיטה העברית.">
+  <meta property="og:title" content="שיעורים פרטיים — מאיין מרגולין">
+  <meta property="og:description" content="שיעורים פרטיים 1:1 — מתמטיקה, מדעי המחשב ומדעים. חשיבה מסודרת, קצב מותאם, עצמאות אמיתית.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://maayan-margolin.pages.dev/teaching.html">
   <meta name="twitter:card" content="summary">
@@ -14,217 +14,293 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Teaching page enhancements (on top of style.css) ── */
+
+    /* Bigger, bolder hero headline */
+    .teaching-hero__title {
+      font-size: clamp(2.75rem, 7vw, 4rem) !important;
+    }
+
+    /* Staggered entrance animations */
+    .th-1 { animation: th-up 0.55s ease both; }
+    .th-2 { animation: th-up 0.55s 0.1s  ease both; }
+    .th-3 { animation: th-up 0.55s 0.2s  ease both; }
+    .th-4 { animation: th-up 0.55s 0.3s  ease both; }
+    @keyframes th-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Decorative watermark behind hero text */
+    .th-watermark {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22rem;
+      line-height: 1;
+      color: var(--orange);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      font-weight: 800;
+      font-family: "Courier New", monospace;
+    }
+
+    /* Subjects: compact scannable grid using existing tech-card */
+    .th-subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 0.75rem;
+    }
+
+    /* Why Me: numbered horizontal list */
+    .th-why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .th-why-item:last-child { border-bottom: none; }
+    .th-why-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--orange);
+      opacity: 0.18;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2.75rem;
+    }
+    .th-why-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .th-why-body p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    @media (max-width: 767px) {
+      .teaching-float { display: flex; }
+      .th-subjects { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Floating WhatsApp — mobile only -->
+  <a href="https://wa.me/972524306992" class="teaching-float" target="_blank" rel="noopener" aria-label="שלח הודעה ב-WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    שלח הודעה
+  </a>
+
   <script src="js/header.js"></script>
 
-  <main class="container">
+  <main class="container" dir="rtl">
 
-    <!-- Hero -->
-    <div class="sub-hero">
-      <a href="index.html" class="back-link">&#8592; Back</a>
-      <h1>Private Tutoring</h1>
-      <p>Personal, 1-on-1 lessons for middle and high school students in the Kiryat area. I bring a software engineer's approach to teaching — structured thinking, real confidence, lasting independence.</p>
-      <div class="sub-hero__links">
-        <a href="https://wa.me/972524306992" class="btn btn--primary" target="_blank" rel="noopener">
+    <!-- ═══ Hero ═══ -->
+    <div class="teaching-hero" style="position:relative;overflow:hidden;">
+      <div class="th-watermark" aria-hidden="true">{}</div>
+
+      <a href="index.html" class="back-link th-1">חזרה &#8592;</a>
+
+      <div class="teaching-hero__eyebrow th-1">
+        <span class="teaching-tag">מתמטיקה</span>
+        <span class="teaching-tag">מדעי המחשב</span>
+        <span class="teaching-tag">מדעים</span>
+        <span class="teaching-tag">1:1</span>
+        <span class="teaching-tag">קריית שמואל</span>
+      </div>
+
+      <h1 class="teaching-hero__title th-2">
+        ציונים עולים.<br>
+        <span class="teaching-hero__accent">ביטחון נשאר.</span>
+      </h1>
+
+      <p class="teaching-hero__subtitle th-3">
+        שיעורים פרטיים עם מהנדס תוכנה — לתלמידי חטיבה ותיכון באזור קריית שמואל. מתמטיקה, מדעי המחשב ועוד.
+      </p>
+
+      <div class="teaching-hero__actions th-3">
+        <a href="https://wa.me/972524306992" class="btn btn--primary btn--lg" target="_blank" rel="noopener">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          052-430-6992
+          שלח הודעה ב-WhatsApp
         </a>
-        <span class="teaching-free-badge">First lesson free</span>
+        <a href="tel:0524306992" class="teaching-hero__number">052-430-6992</a>
+      </div>
+
+      <div class="teaching-hero__stats th-4">
+        <div class="teaching-hero__stat">
+          <strong>2+</strong>
+          <span>שנות ניסיון</span>
+        </div>
+        <div class="teaching-hero__stat">
+          <strong>BSc CS</strong>
+          <span>האוניברסיטה העברית</span>
+        </div>
+        <div class="teaching-hero__stat">
+          <strong>1:1</strong>
+          <span>תשומת לב מלאה</span>
+        </div>
+        <div class="teaching-hero__stat">
+          <strong>&#8362;120</strong>
+          <span>לשיעור שבועי</span>
+        </div>
       </div>
     </div>
 
-    <!-- Stats Bar -->
+    <!-- ═══ Subjects ═══ -->
     <section>
-      <div class="stats-bar">
-        <div class="stats-bar__item">
-          <div class="stats-bar__number">2+</div>
-          <div class="stats-bar__label">Years tutoring</div>
-        </div>
-        <div class="stats-bar__item">
-          <div class="stats-bar__number">5</div>
-          <div class="stats-bar__label">Subject areas</div>
-        </div>
-        <div class="stats-bar__item">
-          <div class="stats-bar__number">1:1</div>
-          <div class="stats-bar__label">Personal attention</div>
-        </div>
-        <div class="stats-bar__item">
-          <div class="stats-bar__number">&#8362;0</div>
-          <div class="stats-bar__label">First lesson</div>
-        </div>
-      </div>
-    </section>
+      <h2 class="section-title">מה אני מלמד</h2>
+      <div class="th-subjects">
 
-    <!-- Subjects -->
-    <section>
-      <h2 class="section-title">Subjects</h2>
-      <div class="teaching-subjects">
-
-        <div class="card card--accent-orange">
-          <div class="card__header">
-            <div class="subject-icon subject-icon--math">&#8721;</div>
-            <div class="card__title">Mathematics</div>
-          </div>
-          <div class="card__desc">All levels — 3-unit through 5-unit bagrut, pre-academic, and university Year 1.</div>
-          <div class="card__tags">
-            <span class="tag">Algebra</span>
-            <span class="tag">Geometry</span>
-            <span class="tag">Trigonometry</span>
-            <span class="tag">Calculus</span>
-            <span class="tag">Linear Algebra</span>
+        <div class="tech-card" style="--tech-accent:#f6821f;">
+          <div class="tech-card__icon" style="background:#f6821f;">&#8721;</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">מתמטיקה</div>
+            <div class="tech-card__role">3–5 יח׳ · קדם-אקדמי · שנה א׳</div>
           </div>
         </div>
 
-        <div class="card card--accent-blue">
-          <div class="card__header">
-            <div class="subject-icon subject-icon--cs">{}</div>
-            <div class="card__title">Computer Science</div>
-          </div>
-          <div class="card__desc">From programming fundamentals to advanced algorithms — taught by a working software engineer.</div>
-          <div class="card__tags">
-            <span class="tag">Python</span>
-            <span class="tag">C / C++</span>
-            <span class="tag">Java</span>
-            <span class="tag">Data Structures</span>
-            <span class="tag">Algorithms</span>
+        <div class="tech-card" style="--tech-accent:#0051c3;">
+          <div class="tech-card__icon" style="background:#0051c3;font-size:0.6rem;">{}</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">מדעי המחשב</div>
+            <div class="tech-card__role">Python · Java · C++ · אלגוריתמים</div>
           </div>
         </div>
 
-        <div class="card card--accent-ocean">
-          <div class="card__header">
-            <div class="subject-icon subject-icon--sci">Sc</div>
-            <div class="card__title">Sciences</div>
-          </div>
-          <div class="card__desc">High school science subjects — building real intuition from first principles.</div>
-          <div class="card__tags">
-            <span class="tag">Physics</span>
-            <span class="tag">Chemistry</span>
-            <span class="tag">Biology</span>
+        <div class="tech-card" style="--tech-accent:#0e9aa7;">
+          <div class="tech-card__icon" style="background:#0e9aa7;font-size:0.6rem;">Sci</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">מדעים</div>
+            <div class="tech-card__role">פיזיקה · כימיה · ביולוגיה</div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card__header">
-            <div class="subject-icon subject-icon--hum">&#1488;</div>
-            <div class="card__title">Humanities</div>
-          </div>
-          <div class="card__desc">Jewish tradition meets structured study methodology.</div>
-          <div class="card__tags">
-            <span class="tag">Bible</span>
-            <span class="tag">Israeli Philosophy</span>
+        <div class="tech-card" style="--tech-accent:#7b2d8e;">
+          <div class="tech-card__icon" style="background:#7b2d8e;font-size:1rem;">&#1488;</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">מדעי הרוח</div>
+            <div class="tech-card__role">תנ"ך · מחשבת ישראל</div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card__header">
-            <div class="subject-icon subject-icon--dev">Dev</div>
-            <div class="card__title">Practical Development</div>
-          </div>
-          <div class="card__desc">Hands-on guidance for building real things — websites, games, or making sense of AI tools. Great for motivated learners who want to go beyond the curriculum.</div>
-          <div class="card__tags">
-            <span class="tag">Web Dev</span>
-            <span class="tag">Game Dev</span>
-            <span class="tag">AI Tools</span>
-            <span class="tag">Technical Writing</span>
+        <div class="tech-card" style="--tech-accent:#1a8a4a;">
+          <div class="tech-card__icon" style="background:#1a8a4a;font-size:0.6rem;">Dev</div>
+          <div class="tech-card__text">
+            <div class="tech-card__name">פיתוח מעשי</div>
+            <div class="tech-card__role">אתרים · כלי AI · פרויקטים</div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Approach -->
+    <!-- ═══ Why Me ═══ -->
     <section>
-      <h2 class="section-title">My Approach</h2>
-      <div class="callout">
-        <h2>Every student can succeed — it's all about the right approach and confidence.</h2>
-        <p>I don't just explain answers. I teach students to think independently: to recognize the structure of a problem, build from what they know, and check themselves. The goal is to make tutoring unnecessary.</p>
-      </div>
-      <div class="feature-grid" style="margin-top: 1rem;">
-        <div class="feature-card">
-          <div class="feature-card__title">Structured Thinking</div>
-          <div class="feature-card__desc">We break problems into logical steps — a habit that transfers across every subject and stays long after lessons end.</div>
+      <h2 class="section-title">למה ללמוד איתי</h2>
+      <div>
+        <div class="th-why-item">
+          <div class="th-why-num">01</div>
+          <div class="th-why-body">
+            <h3>מהנדס, לא רק מורה</h3>
+            <p>אני עובד עם קוד ופרויקטים אמיתיים. ב-CS ובמתמטיקה — ההקשר הזה הופך מושגים מורכבים לפשוטים.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-card__title">Tailored Pace</div>
-          <div class="feature-card__desc">No rushing. Every concept is properly anchored before we move on — adapted to each student's level and learning style.</div>
+        <div class="th-why-item">
+          <div class="th-why-num">02</div>
+          <div class="th-why-body">
+            <h3>חשיבה מסודרת שנשארת</h3>
+            <p>שוברים כל בעיה לצעדים לוגיים. שיטה שמועברת בין כל המקצועות ונשארת הרבה אחרי שהשיעורים מסתיימים.</p>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-card__title">Real Independence</div>
-          <div class="feature-card__desc">The goal is for students to need me less — not more. I focus on building the tools to work independently.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card__title">Engineer's Perspective</div>
-          <div class="feature-card__desc">I bring real-world context to abstract topics — especially for math and CS — that makes concepts click and stick.</div>
+        <div class="th-why-item">
+          <div class="th-why-num">03</div>
+          <div class="th-why-body">
+            <h3>הקצב שלך — לא קצב הכיתה</h3>
+            <p>כל מושג מתבסס לפני שמתקדמים. מטרתי שלא יהיה לך צורך בי בסוף — עצמאות אמיתית, לא תלות.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- ═══ Pull Quote ═══ -->
     <section>
-      <h2 class="section-title">Pricing</h2>
+      <div class="teaching-quote">
+        <p>אני לא מודד הצלחה לפי כמה תלמיד צריך אותי — אלא לפי כמה הוא <strong>לא</strong> צריך אותי בסוף.</p>
+      </div>
+    </section>
+
+    <!-- ═══ Pricing ═══ -->
+    <section>
+      <h2 class="section-title">תמחור</h2>
       <div class="teaching-pricing">
 
         <div class="card card--accent-orange">
           <div class="card__header">
-            <div class="card__title">Weekly Lessons</div>
-            <span class="badge">Recommended</span>
+            <div class="card__title">שיעורים שבועיים</div>
+            <span class="badge">מומלץ</span>
           </div>
-          <div class="card__desc">Best value for steady progress — a recurring weekly slot that builds real momentum.</div>
+          <div class="card__desc">הערך הטוב ביותר — שיעור קבוע שבנוי על מומנטום אמיתי.</div>
           <div class="pricing-rows">
             <div class="pricing-row">
-              <span>1-on-1</span>
-              <span class="pricing-price">&#8362;120 / lesson</span>
+              <span>1:1</span>
+              <span class="pricing-price">&#8362;120 / שיעור</span>
             </div>
             <div class="pricing-row">
-              <span>Pair (2 students)</span>
-              <span class="pricing-price">&#8362;160 / lesson</span>
+              <span>זוג (2 תלמידים)</span>
+              <span class="pricing-price">&#8362;160 / שיעור</span>
             </div>
             <div class="pricing-row">
-              <span>Group (3&#8211;5 students)</span>
-              <span class="pricing-price">&#8362;180 / lesson</span>
+              <span>קבוצה (3&#8211;5)</span>
+              <span class="pricing-price">&#8362;180 / שיעור</span>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card__header">
-            <div class="card__title">Occasional Lessons</div>
-            <span class="badge badge--orange">Flexible</span>
+            <div class="card__title">שיעורים חד-פעמיים</div>
+            <span class="badge badge--orange">גמיש</span>
           </div>
-          <div class="card__desc">Single sessions or exam-prep bursts — no ongoing commitment required.</div>
+          <div class="card__desc">מפגשים בודדים או הכנה לבחינות — ללא מחויבות מתמשכת.</div>
           <div class="pricing-rows">
             <div class="pricing-row">
-              <span>1-on-1</span>
-              <span class="pricing-price">&#8362;150 / lesson</span>
+              <span>1:1</span>
+              <span class="pricing-price">&#8362;150 / שיעור</span>
             </div>
             <div class="pricing-row">
-              <span>Pair (2 students)</span>
-              <span class="pricing-price">&#8362;200 / lesson</span>
+              <span>זוג (2 תלמידים)</span>
+              <span class="pricing-price">&#8362;200 / שיעור</span>
             </div>
             <div class="pricing-row">
-              <span>Group (3&#8211;5 students)</span>
-              <span class="pricing-price">&#8362;250 / lesson</span>
+              <span>קבוצה (3&#8211;5)</span>
+              <span class="pricing-price">&#8362;250 / שיעור</span>
             </div>
           </div>
         </div>
 
       </div>
-      <p class="pricing-note">Pricing is always flexible — reach out and we'll figure out what works for your situation.</p>
+      <p class="pricing-note">התמחור גמיש — צרו קשר ונמצא מה שמתאים לכם.</p>
     </section>
 
-    <!-- Contact CTA -->
+    <!-- ═══ CTA Strip ═══ -->
     <section>
-      <div class="teaching-cta">
-        <h2>Ready to start?</h2>
-        <p>The first lesson is free — no commitment, no pressure. Send a WhatsApp message and we'll schedule a time that works.</p>
-        <div class="teaching-cta__actions">
-          <a href="https://wa.me/972524306992" class="btn btn--primary" target="_blank" rel="noopener">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp — 052-430-6992
-          </a>
-        </div>
+      <div class="cta-strip">
+        <h2>מוכן להתחיל?</h2>
+        <p>שלח הודעה ובואו נבין ביחד מה עוצר אותך.</p>
+        <a href="https://wa.me/972524306992" class="btn cta-strip__btn" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp &#8213; 052-430-6992
+        </a>
       </div>
     </section>
 
