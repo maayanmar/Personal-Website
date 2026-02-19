@@ -6,7 +6,7 @@
     '<div class="container">' +
       '<div class="footer__connect">' +
         '<h2 class="footer__connect-title">Let\'s connect</h2>' +
-        '<p class="footer__connect-desc">Looking for a developer who ships? I am all set!</p>' +
+        '<p class="footer__connect-desc">A developer who ships. Let\'s talk.</p>' +
         '<div class="footer__connect-icons">' +
           '<a href="mailto:mm@io01.io" aria-label="Email" class="footer__icon">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>' +

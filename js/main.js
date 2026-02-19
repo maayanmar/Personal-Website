@@ -233,7 +233,7 @@ if (terminalLines) {
   runTerminal();
 }
 
-// Mobile carousel for Ongoing Work
+// Mobile carousel for Ongoing Work (index.html)
 (function () {
   const carousel = document.querySelector(".carousel-mobile");
   const dotsContainer = document.querySelector(".carousel-dots");
@@ -242,7 +242,6 @@ if (terminalLines) {
   const cards = Array.from(carousel.children);
   if (cards.length < 2) return;
 
-  // Create dots
   cards.forEach((_, i) => {
     const dot = document.createElement("button");
     dot.className = "carousel-dot" + (i === 0 ? " active" : "");
@@ -255,7 +254,6 @@ if (terminalLines) {
 
   const dots = dotsContainer.querySelectorAll(".carousel-dot");
 
-  // Update active dot on scroll
   let ticking = false;
   carousel.addEventListener("scroll", () => {
     if (ticking) return;
@@ -270,4 +268,118 @@ if (terminalLines) {
     });
   });
 })();
+
+// Generic carousel with arrows + dots (vehagita.html)
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const track = carousel.querySelector(".carousel__track");
+  const dotsContainer = carousel.querySelector(".carousel__dots");
+  const prevBtn = carousel.querySelector(".carousel__btn--prev");
+  const nextBtn = carousel.querySelector(".carousel__btn--next");
+  if (!track || !dotsContainer) return;
+
+  const isFullWidth = track.classList.contains("carousel__track--full");
+  const slides = Array.from(track.children);
+  if (slides.length < 2) return;
+
+  // For full-width carousels, each slide = 1 page.
+  // For multi-item carousels, we calculate pages based on visible width.
+  function getPageCount() {
+    if (isFullWidth) return slides.length;
+    const trackWidth = track.clientWidth;
+    const totalScroll = track.scrollWidth;
+    return Math.max(1, Math.ceil(totalScroll / trackWidth));
+  }
+
+  function getCurrentPage() {
+    if (isFullWidth) {
+      const slideWidth = slides[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return Math.round(track.scrollLeft / (slideWidth + gap));
+    }
+    const trackWidth = track.clientWidth;
+    const maxScroll = track.scrollWidth - trackWidth;
+    if (maxScroll <= 0) return 0;
+    const pages = getPageCount();
+    return Math.round((track.scrollLeft / maxScroll) * (pages - 1));
+  }
+
+  function scrollToPage(page) {
+    if (isFullWidth) {
+      const slideWidth = slides[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      track.scrollTo({ left: page * (slideWidth + gap), behavior: "smooth" });
+    } else {
+      const pages = getPageCount();
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const target = pages <= 1 ? 0 : (page / (pages - 1)) * maxScroll;
+      track.scrollTo({ left: target, behavior: "smooth" });
+    }
+  }
+
+  function buildDots() {
+    dotsContainer.innerHTML = "";
+    const pages = getPageCount();
+    const current = getCurrentPage();
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement("button");
+      dot.className = "carousel__dot" + (i === current ? " active" : "");
+      dot.setAttribute("aria-label", "Go to page " + (i + 1));
+      dot.addEventListener("click", () => scrollToPage(i));
+      dotsContainer.appendChild(dot);
+    }
+    updateButtons(current, pages);
+  }
+
+  function updateButtons(current, pages) {
+    if (prevBtn) prevBtn.disabled = current <= 0;
+    if (nextBtn) nextBtn.disabled = current >= pages - 1;
+  }
+
+  function syncDots() {
+    const pages = getPageCount();
+    const current = getCurrentPage();
+    const dots = dotsContainer.querySelectorAll(".carousel__dot");
+    // Rebuild if page count changed (resize)
+    if (dots.length !== pages) {
+      buildDots();
+      return;
+    }
+    dots.forEach((d, i) => d.classList.toggle("active", i === current));
+    updateButtons(current, pages);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      const current = getCurrentPage();
+      if (current > 0) scrollToPage(current - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const current = getCurrentPage();
+      const pages = getPageCount();
+      if (current < pages - 1) scrollToPage(current + 1);
+    });
+  }
+
+  let ticking = false;
+  track.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      syncDots();
+      ticking = false;
+    });
+  });
+
+  // Rebuild dots on resize
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildDots, 150);
+  });
+
+  buildDots();
+});
 

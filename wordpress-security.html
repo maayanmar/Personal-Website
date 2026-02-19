@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WordPress Security — Maayan Margolin</title>
-  <meta name="description" content="Cloudflare WAF implementation with automated Playwright testing for WordPress security.">
-  <meta property="og:title" content="WordPress Security — Maayan Margolin">
-  <meta property="og:description" content="Cloudflare WAF implementation with automated Playwright testing for WordPress security.">
+  <title>Managing WordPress Security — Maayan Margolin</title>
+  <meta name="description" content="Cloudflare WAF defense system and custom-built analytics and testing tools for WordPress sites.">
+  <meta property="og:title" content="Managing WordPress Security — Maayan Margolin">
+  <meta property="og:description" content="Cloudflare WAF defense system and custom-built analytics and testing tools for WordPress sites.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://maayan-margolin.pages.dev/wordpress-security.html">
   <meta name="twitter:card" content="summary">
@@ -21,33 +21,159 @@
 
   <main class="container">
 
-    <!-- Back link + Hero -->
+    <!-- Hero -->
     <div class="sub-hero">
-      <a href="index.html" class="back-link">&larr; Back to home</a>
-      <h1>WordPress Security</h1>
-      <p>Cloudflare WAF implementation and automated security testing for WordPress sites. Paid client work under the mentorship of <strong>IO01</strong>.</p>
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+        <p class="sub-hero__tagline" style="margin-bottom: 0;">Client Work</p>
+        <span class="tech-group-label">Custom-made tools</span>
+      </div>
+      <h1>Managing WordPress Security</h1>
+      <p>Cloudflare WAF defense system and custom-built security tooling for live WordPress sites. Paid client work under the mentorship of <strong>IO01</strong>.</p>
+      <div class="tech-line" style="margin-top: 1.25rem; justify-content: flex-start;">
+        <div class="tech-chip" style="--chip-color: #f6821f;">
+          <span class="tech-chip__icon">CF</span>
+          <span class="tech-chip__name">WAF Monitor</span>
+          <span class="tech-chip__role">Cloudflare · Custom</span>
+        </div>
+        <div class="tech-chip" style="--chip-color: #7b2d8e;">
+          <span class="tech-chip__icon">Pw</span>
+          <span class="tech-chip__name">Test Runner</span>
+          <span class="tech-chip__role">Playwright · Custom</span>
+        </div>
+        <div class="tech-chip" style="--chip-color: #21759b;">
+          <span class="tech-chip__icon">WP</span>
+          <span class="tech-chip__name">WordPress</span>
+          <span class="tech-chip__role">Target platform</span>
+        </div>
+      </div>
     </div>
 
-    <!-- WAF Monitor -->
+    <!-- 5-Rule Defense System -->
     <section>
-      <h2 class="section-title">WAF Monitor — 5-Rule Defense System</h2>
-      <p style="color: var(--gray-600); margin-bottom: 1rem;">Progressive rules that escalate from permissive to restrictive, ensuring legitimate traffic passes while blocking threats.</p>
+      <h2 class="section-title">5-Rule Defense System</h2>
+      <p style="color: var(--gray-600); margin-bottom: 1.25rem;">Progressive rules that escalate from permissive to restrictive, ensuring legitimate traffic passes while blocking threats. Click any rule to inspect its Cloudflare expression.</p>
       <ol class="rule-list">
-        <li><strong>Allow good bots</strong> — verified search engine crawlers and monitoring services pass through unconditionally</li>
-        <li><strong>Challenge crawlers</strong> — unverified bots receive managed challenges to prove legitimacy</li>
-        <li><strong>Geo &amp; provider filter</strong> — restrict traffic by geography and hosting/cloud provider IP ranges</li>
-        <li><strong>VPN &amp; login protection</strong> — additional challenges for VPN traffic and wp-admin access</li>
-        <li><strong>Block hostile traffic</strong> — hard block on known-malicious IPs, TOR exit nodes, and attack patterns</li>
+
+        <li>
+          <details class="rule-details">
+            <summary>
+              <span class="rule-action rule-action--skip">Skip</span>
+              <strong>Allow Good Bots</strong> — whitelist the origin server, verified search crawlers, monitoring services, and Let's Encrypt cert renewals
+            </summary>
+            <div class="rule-expression">(ip.src in {&lt;SERVER_IP&gt;})
+ or (cf.verified_bot_category in {
+     "Search Engine Crawler" "Search Engine Optimization"
+     "Monitoring &amp; Analytics" "Advertising &amp; Marketing"
+     "Page Preview" "Academic Research" "Security"
+     "Accessibility" "Webhooks" "Feed Fetcher"
+ })
+ or (http.user_agent contains "letsencrypt"
+     and http.request.uri.path contains "acme-challenge")</div>
+          </details>
+        </li>
+
+        <li>
+          <details class="rule-details">
+            <summary>
+              <span class="rule-action rule-action--challenge">Challenge</span>
+              <strong>Aggressive Crawlers</strong> — challenge known SEO tools, scrapers, and unverified bots by user-agent patterns
+            </summary>
+            <div class="rule-expression">(http.user_agent contains "yandex")
+ or (http.user_agent contains "sogou")
+ or (http.user_agent contains "semrush")
+ or (http.user_agent contains "ahrefs")
+ or (http.user_agent contains "baidu")
+ or (http.user_agent contains "python-requests")
+ or (http.user_agent contains "neevabot")
+ or (http.user_agent contains "CF-UC")
+ or (http.user_agent contains "sitelock")
+ or (http.user_agent contains "crawl" and not cf.client.bot)
+ or (http.user_agent contains "bot"    and not cf.client.bot)
+ or (http.user_agent contains "Bot"    and not cf.client.bot)
+ or (http.user_agent contains "Crawl"  and not cf.client.bot)
+ or (http.user_agent contains "spider" and not cf.client.bot)
+ or (http.user_agent contains "mj12bot")
+ or (http.user_agent contains "ZoominfoBot")
+ or (http.user_agent contains "mojeek")
+ or (ip.src.asnum in {135061 23724 4808}
+     and http.user_agent contains "siteaudit")</div>
+          </details>
+        </li>
+
+        <li>
+          <details class="rule-details">
+            <summary>
+              <span class="rule-action rule-action--challenge">Challenge</span>
+              <strong>Challenge Large Providers / Country</strong> — challenge cloud provider ASNs (AWS, Azure, GCP) and traffic from outside the allowed country list
+            </summary>
+            <div class="rule-expression">(ip.src.asnum in {7224 16509 14618 8075 396982}
+ and not cf.client.bot
+ and not cf.verified_bot_category in {
+     "Search Engine Crawler" "Search Engine Optimization"
+     "Monitoring &amp; Analytics" "Advertising &amp; Marketing"
+     "Page Preview" "Academic Research" "Security"
+     "Accessibility" "Webhooks" "Feed Fetcher" "Aggregator"
+ })
+ or (not ip.src.country in {"IL" "SA" "AE" "EG" "JO" "LB" "MA" "IT" "US" "GB"}
+ and not cf.client.bot
+ and not cf.verified_bot_category in {
+     "Search Engine Crawler" "Search Engine Optimization"
+     "Monitoring &amp; Analytics" "Advertising &amp; Marketing"
+     "Page Preview" "Academic Research" "Security"
+     "Accessibility" "Webhooks" "Feed Fetcher" "Aggregator"
+ }
+ and not http.request.uri.path contains "acme-challenge"
+ and not http.request.uri.query contains "?fbclid"
+ and not ip.src.asnum in {32934})</div>
+          </details>
+        </li>
+
+        <li>
+          <details class="rule-details">
+            <summary>
+              <span class="rule-action rule-action--challenge">Challenge</span>
+              <strong>VPN / Path Managed Challenge</strong> — challenge known VPN provider ASNs and any access to the WordPress login path
+            </summary>
+            <div class="rule-expression">(ip.src.asnum in {
+     60068 9009 16247 51332 212238 131199 22298
+     29761 62639 206150 210277 46562 8100 3214
+     206092 206074 206164 213074
+ })
+ or (http.request.uri.path contains "wp-login")</div>
+          </details>
+        </li>
+
+        <li>
+          <details class="rule-details">
+            <summary>
+              <span class="rule-action rule-action--block">Block</span>
+              <strong>Block Web Hosts / Paths / TOR</strong> — hard block web hosting ASNs, sensitive WordPress paths, TOR exit nodes, and AI crawlers
+            </summary>
+            <div class="rule-expression">(ip.src.asnum in {
+     200373 198571 26496 31815 18450 398101 50673  7393 14061 205544
+     199610  21501 16125 51540 264649  39020 30083 35540 55293 36943
+      32244   6724 63949  7203 201924  30633208046 36352 25264 32475
+      23033  32475212047  32475 31898 210920211252 16276 23470 136907
+      12876 210558132203 61317 212238  37963 13238  2639 20473  63018
+     395954  19437207990 27411  53667 27176 396507206575 20454  51167
+      60781  62240398493206092  63023 213230  26347 20738 45102  24940
+      57523   8100  8560  6939 14178 46606 197540397630  9009  11878
+ })
+ or (http.request.uri.path contains "xmlrpc")
+ or (http.request.uri.path contains "wp-config")
+ or (http.request.uri.path contains "wlwmanifest")
+ or (cf.verified_bot_category in {"AI Crawler" "Other"})
+ or (ip.src.country in {"T1"})</div>
+          </details>
+        </li>
+
       </ol>
-      <div class="screenshot">
-        <img src="images/waf-monitor.png" alt="WAF Monitor — real-time Cloudflare WAF analytics dashboard" loading="lazy">
-        <div class="screenshot__caption">WAF Monitor — real-time Cloudflare WAF analytics</div>
-      </div>
     </section>
 
     <!-- Strategy -->
     <section>
       <h2 class="section-title">Strategy</h2>
+      <p style="color: var(--gray-600); margin-bottom: 1.25rem;">A conservative, data-driven approach that minimizes disruption to legitimate users.</p>
       <div class="strategy-flow">
         <div class="strategy-step">
           <div class="strategy-step__number">1</div>
@@ -69,37 +195,67 @@
       </div>
     </section>
 
-    <!-- Playwright Test Runner -->
+    <!-- Custom Tools Carousel -->
     <section>
-      <h2 class="section-title">Playwright Test Runner</h2>
-      <p style="color: var(--gray-600); margin-bottom: 1rem;">Automated E2E testing suite that validates WAF rule effectiveness.</p>
-      <ul class="feature-list">
-        <li><strong>Rule validation</strong> — tests each WAF rule to confirm expected allow/block/challenge behavior</li>
-        <li><strong>False positive detection</strong> — verifies legitimate user flows are not interrupted</li>
-        <li><strong>Regression testing</strong> — runs after rule changes to catch unintended side effects</li>
-        <li><strong>Multi-browser coverage</strong> — tests across Chromium, Firefox, and WebKit</li>
-      </ul>
-      <div class="screenshot">
-        <img src="images/test-runner.png" alt="Playwright Test Runner — automated WAF validation UI" loading="lazy">
-        <div class="screenshot__caption">Playwright Test Runner — automated WAF rule validation</div>
+      <h2 class="section-title">Custom Tools</h2>
+      <div class="carousel" data-carousel>
+        <div class="carousel__track carousel__track--full">
+
+          <!-- Slide 1: WAF Monitor -->
+          <div class="showcase">
+            <div class="showcase__img">
+              <img src="images/waf-monitor.png" alt="WAF Monitor — custom Cloudflare analytics dashboard" loading="lazy">
+            </div>
+            <div class="showcase__text">
+              <div class="showcase__title">WAF Monitor</div>
+              <p class="showcase__desc">Cloudflare's free plan doesn't include WAF analytics — you can configure rules but fly blind on what they're actually doing. I built WAF Monitor to fill that gap: a custom React dashboard that surfaces real intelligence from the Cloudflare API.</p>
+              <ul class="showcase__highlights">
+                <li>Real-time threat visibility — blocked IPs, challenge rates, and attack patterns per rule</li>
+                <li>Rule effectiveness metrics — which rules trigger most, confirming they work</li>
+                <li>Automated threat intelligence — classifies sources, flags anomalies, identifies scanners</li>
+                <li>Export reports — single-zone or combined 4-zone HTML/PDF for the client</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Slide 2: Playwright Test Runner -->
+          <div class="showcase">
+            <div class="showcase__img">
+              <img src="images/test-runner.png" alt="Playwright Test Runner — automated WAF validation UI" loading="lazy">
+            </div>
+            <div class="showcase__text">
+              <div class="showcase__title">Playwright Test Runner</div>
+              <p class="showcase__desc">A bespoke Playwright test suite and browser dashboard that validates every WAF rule after each configuration change — ensuring no legitimate user flow is ever interrupted.</p>
+              <ul class="showcase__highlights">
+                <li>24 baseline tests — core site, admin, REST API, plugins, static assets</li>
+                <li>31 legitimate-user flow tests — full login flow, enrolled courses, video &amp; slides</li>
+                <li>False positive detection — flags any rule that blocks legitimate user access</li>
+                <li>Multi-domain support — runs against both production &amp; dev environments</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="carousel__nav">
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&larr;</button>
+          <div class="carousel__dots"></div>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&rarr;</button>
+        </div>
       </div>
     </section>
 
-    <!-- Additional -->
+    <!-- Additional Work -->
     <section>
       <h2 class="section-title">Additional Work</h2>
-      <ul class="feature-list">
-        <li><strong>Video content protection</strong> — strategies to prevent unauthorized downloading and hotlinking of video assets</li>
-        <li><strong>Bilingual documentation</strong> — vulnerability reports and security guides in both English and Hebrew</li>
-      </ul>
-    </section>
-
-    <!-- IO01 Context -->
-    <section>
-      <div class="callout">
-        <h2>IO01 Context</h2>
-        <p>This project was done as paid client work through <strong>IO01</strong>, a startup founded by <strong>Nimrod Luria</strong>. IO01 provides mentorship-driven tech services, pairing junior developers with real client projects under experienced guidance.</p>
-        <p>The mentorship focused on security engineering practices, Cloudflare infrastructure, and professional client delivery.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-card__title">Video Content Protection</div>
+          <div class="feature-card__desc">Strategies to prevent unauthorized downloading and hotlinking of video assets hosted on client sites.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__title">Bilingual Documentation</div>
+          <div class="feature-card__desc">Vulnerability reports and security guides authored in both English and Hebrew for client-facing delivery.</div>
+        </div>
       </div>
     </section>
 

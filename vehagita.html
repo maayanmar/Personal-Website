@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VeHagita — Maayan Margolin</title>
-  <meta name="description" content="VeHagita: Full-stack social Torah study platform with 23,000+ verses and 200,000+ commentary segments.">
-  <meta property="og:title" content="VeHagita — Maayan Margolin">
-  <meta property="og:description" content="VeHagita: Full-stack social Torah study platform with 23,000+ verses and 200,000+ commentary segments.">
+  <title>והגית — Maayan Margolin</title>
+  <meta name="description" content="Social Torah study platform with 23,206 verses and 206,379 commentary segments from 37+ classical sources — built end-to-end with React, TypeScript, and Supabase.">
+  <meta property="og:title" content="והגית — Maayan Margolin">
+  <meta property="og:description" content="Social Torah study platform with 23,206 verses and 206,379 commentary segments from 37+ classical sources — built end-to-end with React, TypeScript, and Supabase.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://maayan-margolin.pages.dev/vehagita.html">
   <meta name="twitter:card" content="summary">
@@ -15,124 +15,220 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-vehagita">
 
   <script src="js/header.js"></script>
 
   <main class="container">
 
-    <!-- Back link + Hero -->
-    <div class="sub-hero">
-      <a href="index.html" class="back-link">&larr; Back to home</a>
-      <h1>VeHagita</h1>
-      <p>A social Torah study platform where users explore Tanakh with classical commentaries and write their own insights (pirushim).</p>
-      <div class="sub-hero__links">
-        <a href="https://wehagita.com" class="btn btn--primary" target="_blank" rel="noopener">Visit wehagita.com</a>
-        <a href="https://wehagita.com/about" class="btn btn--outline" target="_blank" rel="noopener">About page</a>
-      </div>
+    <!-- Hero -->
+    <div class="sub-hero vehagita-hero">
+      <a href="https://wehagita.com" class="vehagita-logo" target="_blank" rel="noopener" dir="rtl">והגית</a>
     </div>
+
+    <!-- Stats Bar -->
+    <section>
+      <div class="stats-bar">
+        <div class="stats-bar__item">
+          <div class="stats-bar__number">23,206</div>
+          <div class="stats-bar__label">Tanakh verses</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__number">206,379</div>
+          <div class="stats-bar__label">Commentary segments</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__number">37+</div>
+          <div class="stats-bar__label">Classical sources</div>
+        </div>
+        <div class="stats-bar__item">
+          <div class="stats-bar__number">40+</div>
+          <div class="stats-bar__label">Active users</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Showcase Carousel -->
+    <section>
+      <h2 class="section-title">The App</h2>
+      <div class="carousel" data-carousel>
+        <div class="carousel__track carousel__track--full">
+
+          <!-- Slide 1: Reader View -->
+          <div class="showcase">
+            <div class="showcase__img">
+              <img src="images/vehagita-reader.png" alt="VeHagita reader view — infinite-scroll Tanakh reading" loading="lazy">
+            </div>
+            <div class="showcase__text">
+              <div class="showcase__title">Reader View</div>
+              <p class="showcase__desc">A continuous, infinite-scroll reading experience for the entire Tanakh. Verses load progressively as you scroll, with commentaries lazy-loaded on demand.</p>
+              <ul class="showcase__highlights">
+                <li>Infinite-scroll with lazy-loaded commentaries</li>
+                <li>Fisheye progress rail for chapter navigation</li>
+                <li>Clean typography optimized for Hebrew text</li>
+                <li>Book &amp; chapter navigation bar</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Slide 2: Pardes View -->
+          <div class="showcase">
+            <div class="showcase__img">
+              <img src="images/vehagita-pardes.png" alt="VeHagita Pardes view — multi-column commentary layout" loading="lazy">
+            </div>
+            <div class="showcase__text">
+              <div class="showcase__title">Pardes View</div>
+              <p class="showcase__desc">A deep-study layout that places the verse front and center, surrounded by a grid of classical commentaries with color-coded source badges.</p>
+              <ul class="showcase__highlights">
+                <li>Verse displayed prominently at the top</li>
+                <li>3 tabs: Commentaries, Community, Data</li>
+                <li>Multi-column commentary grid from 37+ sources</li>
+                <li>Color-coded badges per commentary source</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="carousel__nav">
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&larr;</button>
+          <div class="carousel__dots"></div>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Flow -->
+    <section>
+      <h2 class="section-title">Architecture</h2>
+      <div class="strategy-flow">
+        <div class="strategy-step">
+          <div class="strategy-step__number">1</div>
+          <div class="strategy-step__title">Frontend</div>
+          <div class="strategy-step__desc">React 18 + TypeScript + Vite 5 + Tailwind CSS</div>
+        </div>
+        <div class="strategy-arrow">&rarr;</div>
+        <div class="strategy-step">
+          <div class="strategy-step__number">2</div>
+          <div class="strategy-step__title">Backend</div>
+          <div class="strategy-step__desc">Supabase — PostgreSQL + Auth + Edge Functions + RLS</div>
+        </div>
+        <div class="strategy-arrow">&rarr;</div>
+        <div class="strategy-step">
+          <div class="strategy-step__number">3</div>
+          <div class="strategy-step__title">Hosting</div>
+          <div class="strategy-step__desc">Cloudflare Pages — CDN, migrated from GCP Enterprise</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Carousel -->
+    <section>
+      <h2 class="section-title">Key Features</h2>
+      <div class="carousel" data-carousel>
+        <div class="carousel__track carousel__track--multi">
+          <div class="feature-card">
+            <div class="feature-card__title">Infinite-scroll reader</div>
+            <div class="feature-card__desc">Continuous verse stream with lazy-loaded commentaries</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Full-text search</div>
+            <div class="feature-card__desc">Search across all verses and commentaries instantly</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Fisheye progress rail</div>
+            <div class="feature-card__desc">Visual chapter navigation with zoom effect</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Reader &amp; Pardes layouts</div>
+            <div class="feature-card__desc">Multiple commentary views for different study styles</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Personal insights (pirushim)</div>
+            <div class="feature-card__desc">Tiptap rich text editor for writing and sharing</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Google OAuth</div>
+            <div class="feature-card__desc">Sign in to save progress and insights</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Offline caching</div>
+            <div class="feature-card__desc">IndexedDB for previously viewed content</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__title">Light &amp; dark themes</div>
+            <div class="feature-card__desc">System-aware with manual toggle</div>
+          </div>
+        </div>
+        <div class="carousel__nav">
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&larr;</button>
+          <div class="carousel__dots"></div>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&rarr;</button>
+        </div>
+      </div>
+    </section>
 
     <!-- Tech Stack -->
     <section>
       <h2 class="section-title">Tech Stack</h2>
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#0a7ea4;">Re</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">React 18</div>
-            <div class="tech-card__role">Frontend</div>
-          </div>
+      <div class="tech-line">
+        <div class="tech-chip" style="--chip-color:#0a7ea4;">
+          <span class="tech-chip__icon">Re</span>
+          <span class="tech-chip__name">React 18</span>
+          <span class="tech-chip__role">Frontend</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#235a97;">TS</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">TypeScript</div>
-            <div class="tech-card__role">Language</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#235a97;">
+          <span class="tech-chip__icon">TS</span>
+          <span class="tech-chip__name">TypeScript</span>
+          <span class="tech-chip__role">Language</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#f6821f;">V5</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Vite 5</div>
-            <div class="tech-card__role">Build tool</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#f6821f;">
+          <span class="tech-chip__icon">V5</span>
+          <span class="tech-chip__name">Vite 5</span>
+          <span class="tech-chip__role">Build tool</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#38bdf8;">Tw</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Tailwind CSS</div>
-            <div class="tech-card__role">Styling</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#38bdf8;">
+          <span class="tech-chip__icon">Tw</span>
+          <span class="tech-chip__name">Tailwind CSS</span>
+          <span class="tech-chip__role">Styling</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#1a8a4a;">Sb</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Supabase</div>
-            <div class="tech-card__role">Backend + Auth + DB</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#1a8a4a;">
+          <span class="tech-chip__icon">Sb</span>
+          <span class="tech-chip__name">Supabase</span>
+          <span class="tech-chip__role">Backend + Auth + DB</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#c45e00;">CF</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Cloudflare Pages</div>
-            <div class="tech-card__role">Hosting</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#c45e00;">
+          <span class="tech-chip__icon">CF</span>
+          <span class="tech-chip__name">Cloudflare</span>
+          <span class="tech-chip__role">Hosting</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#7b2d8e;">Pw</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Playwright</div>
-            <div class="tech-card__role">E2E Testing</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#7b2d8e;">
+          <span class="tech-chip__icon">Pw</span>
+          <span class="tech-chip__name">Playwright</span>
+          <span class="tech-chip__role">E2E Testing</span>
         </div>
-        <div class="tech-card">
-          <div class="tech-card__icon" style="background:#4a4a4a;">Tp</div>
-          <div class="tech-card__text">
-            <div class="tech-card__name">Tiptap</div>
-            <div class="tech-card__role">Rich text editor</div>
-          </div>
+        <div class="tech-chip" style="--chip-color:#4a4a4a;">
+          <span class="tech-chip__icon">Tp</span>
+          <span class="tech-chip__name">Tiptap</span>
+          <span class="tech-chip__role">Rich text editor</span>
         </div>
       </div>
     </section>
 
     <!-- Development Methodology -->
     <section>
-      <h2 class="section-title">Development Methodology</h2>
-      <p style="color: var(--gray-600); margin-bottom: 0.75rem;">
-        Built primarily with <strong>Claude Code</strong> using MCP servers for Supabase management and Cloudflare deployment. Frontend prototyping done with <strong>Lovable</strong>, then refined and extended via Claude Code.
-      </p>
-    </section>
-
-    <!-- Platform Data -->
-    <section>
-      <h2 class="section-title">Platform Data</h2>
-      <div class="card-grid">
-        <div class="card stat-card">
-          <div class="stat-card__number">23,206</div>
-          <div class="stat-card__label">Tanakh verses</div>
-        </div>
-        <div class="card stat-card">
-          <div class="stat-card__number">206,379</div>
-          <div class="stat-card__label">Commentary segments from 37+ sources</div>
-        </div>
+      <div class="callout">
+        <h2>Development Methodology</h2>
+        <p>Built primarily with <strong>Claude Code</strong> using MCP servers for Supabase management and Cloudflare deployment. Frontend prototyping done with <strong>Lovable</strong>, then refined and extended via Claude Code.</p>
+        <p>An AI-assisted development workflow — from database schema to production deployment.</p>
       </div>
     </section>
 
-    <!-- Key Features -->
+    <!-- Migration Callout -->
     <section>
-      <h2 class="section-title">Key Features</h2>
-      <ul class="feature-list">
-        <li><strong>Infinite-scroll reader</strong> — continuous verse stream with lazy-loaded commentaries</li>
-        <li><strong>Full-text search</strong> — search across verses and commentaries</li>
-        <li><strong>Fisheye progress rail</strong> — visual chapter navigation with zoom effect</li>
-        <li><strong>Multiple commentary layouts</strong> — side-by-side, inline, and stacked views</li>
-        <li><strong>Personal insights (pirushim)</strong> — Tiptap rich text editor for writing and sharing</li>
-        <li><strong>Google OAuth</strong> — sign in to save progress and insights</li>
-        <li><strong>Offline caching</strong> — IndexedDB for previously viewed content</li>
-        <li><strong>Light &amp; dark themes</strong> — system-aware with manual toggle</li>
-        <li><strong>Performance refactor</strong> — optimized rendering and bundle splitting</li>
-        <li><strong>Migration savings</strong> — moved from Vercel to Cloudflare Pages, cutting hosting costs</li>
-      </ul>
+      <div class="callout">
+        <h2>GCP Enterprise &rarr; Supabase + Cloudflare</h2>
+        <p>Migrated the entire stack from <strong>Google Cloud Platform Enterprise</strong> to <strong>Supabase</strong> (backend, auth, database) and <strong>Cloudflare Pages</strong> (hosting, CDN) — significantly reducing costs while improving maintainability and security.</p>
+      </div>
     </section>
 
   </main>
