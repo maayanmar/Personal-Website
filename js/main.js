@@ -1,15 +1,3 @@
-// Mobile nav toggle
-const toggle = document.querySelector(".nav__toggle");
-const navLinks = document.querySelector(".nav__links");
-
-if (toggle && navLinks) {
-  toggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    toggle.classList.toggle("active", isOpen);
-    toggle.setAttribute("aria-expanded", isOpen);
-  });
-}
-
 // CV dropdown toggle — handle all instances (desktop + mobile)
 document.querySelectorAll(".cv-dropdown").forEach((dropdown) => {
   const btn = dropdown.querySelector(".cv-dropdown__btn");
@@ -19,9 +7,13 @@ document.querySelectorAll(".cv-dropdown").forEach((dropdown) => {
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     // Close other dropdowns first
-    document.querySelectorAll(".cv-dropdown__menu.open").forEach((m) => {
-      if (m !== menu) m.classList.remove("open");
+    document.querySelectorAll(".cv-dropdown").forEach((d) => {
+      if (d !== dropdown) {
+        d.classList.remove("open");
+        d.querySelector(".cv-dropdown__menu").classList.remove("open");
+      }
     });
+    dropdown.classList.toggle("open");
     menu.classList.toggle("open");
   });
 
@@ -29,10 +21,13 @@ document.querySelectorAll(".cv-dropdown").forEach((dropdown) => {
 });
 
 document.addEventListener("click", () => {
-  document.querySelectorAll(".cv-dropdown__menu.open").forEach((m) => m.classList.remove("open"));
+  document.querySelectorAll(".cv-dropdown").forEach((d) => {
+    d.classList.remove("open");
+    d.querySelector(".cv-dropdown__menu").classList.remove("open");
+  });
 });
 
-// Rotating slogan with binary scramble transition (retargeted to terminal)
+// Rotating slogan with smooth crossfade
 const sloganEl = document.querySelector(".terminal__slogan");
 if (sloganEl) {
   const phrases = [
@@ -41,145 +36,238 @@ if (sloganEl) {
     "Armed with Claude Code, there\u2019s no project I can\u2019t build.",
   ];
   let index = 0;
-  let isAnimating = false;
-
-  function randomBinary(len) {
-    let s = "";
-    for (let i = 0; i < len; i++) {
-      s += Math.random() < 0.15 ? " " : Math.random() < 0.5 ? "0" : "1";
-    }
-    return s;
-  }
-
-  function scrambleTo(target, done) {
-    const len = Math.max(target.length, 30);
-    let frame = 0;
-    const totalFrames = 18;
-
-    function step() {
-      frame++;
-      if (frame >= totalFrames) {
-        sloganEl.textContent = target;
-        sloganEl.classList.remove("slogan--binary");
-        done();
-        return;
-      }
-      const revealed = Math.floor((frame / totalFrames) * target.length);
-      const real = target.slice(0, revealed);
-      const noise = randomBinary(len - revealed);
-      sloganEl.textContent = real + noise;
-      sloganEl.classList.add("slogan--binary");
-      requestAnimationFrame(step);
-    }
-    step();
-  }
 
   setInterval(() => {
-    if (isAnimating) return;
-    isAnimating = true;
-    const next = (index + 1) % phrases.length;
-
-    const len = Math.max(sloganEl.textContent.length, 30);
-    let dissolveFrame = 0;
-    const dissolveTotal = 10;
-
-    function dissolve() {
-      dissolveFrame++;
-      if (dissolveFrame >= dissolveTotal) {
-        index = next;
-        scrambleTo(phrases[index], () => { isAnimating = false; });
-        return;
-      }
-      sloganEl.textContent = randomBinary(len);
-      sloganEl.classList.add("slogan--binary");
-      requestAnimationFrame(dissolve);
-    }
-    dissolve();
+    sloganEl.classList.add("slogan--fading");
+    setTimeout(() => {
+      index = (index + 1) % phrases.length;
+      sloganEl.textContent = phrases[index];
+      sloganEl.classList.remove("slogan--fading");
+    }, 400);
   }, 4000);
 }
 
-// Terminal typing animation
+// Interactive terminal
 const terminalLines = document.querySelector(".terminal__lines");
 const terminalCursor = document.querySelector(".terminal__cursor");
 
 if (terminalLines) {
+  const PROMPT = "PS> ";
   const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  const commands = [
-    {
-      cmd: "whoami",
-      output: "Maayan Margolin \u2014 CS Graduate, Hebrew University",
-    },
-    {
-      cmd: "ls ~/skills",
-      outputHTML: [
-        '<span class="tag tag--react">React</span>',
-        '<span class="tag tag--ts">TypeScript</span>',
-        '<span class="tag tag--supabase">Supabase</span>',
-        '<span class="tag tag--cloudflare">Cloudflare</span>',
-        '<span class="tag tag--playwright">Playwright</span>',
-        '<span class="tag" style="background:#fef3c7;color:#92400e;border-color:#fde68a;">Python</span>',
-      ].join(" "),
-    },
-    {
-      cmd: "cd ~/projects && ls",
-      output: "vehagita/  wordpress-security/  nand2tetris/",
-    },
-    {
-      cmd: "cat status.txt",
-      output: "Open to full-stack, backend & security roles",
-    },
-  ];
+  const commandResponses = {
+    whoami: "Maayan Margolin \u2014 CS Graduate, Hebrew University",
+    skills: "React \u00b7 TypeScript \u00b7 Supabase \u00b7 Cloudflare \u00b7 Playwright \u00b7 Python",
+    projects: "vehagita/  wordpress-security/  nand2tetris/",
+    status: "Open to full-stack, backend & security roles",
+    contact: "GitHub: maayanmar \u00b7 LinkedIn: maayan-margolin",
+    help: "Available commands:\n  whoami     About me\n  skills     Tech stack\n  projects   My work\n  status     What I\u2019m looking for\n  contact    Get in touch\n  clear      Clear terminal",
+  };
 
-  async function typeCommand(text) {
+  const easterEggs = {
+    "sudo hire maayan": "No sudo needed. I\u2019m ready to start!",
+    sudo: "No sudo needed around here.",
+    coffee: "Brewing... \u2615 Best consumed while reviewing my projects.",
+    "rm -rf /": "Nice try. This terminal is write-protected.",
+    "rm -rf": "Nice try. This terminal is write-protected.",
+    matrix: "Wake up, recruiter... the Matrix has you.",
+    hello: "Hey there! Type 'help' to see what I can do.",
+    hi: "Hey there! Type 'help' to see what I can do.",
+    exit: "There is no escape. But you can type 'help'.",
+    cls: "Use 'clear' instead \u2014 this isn\u2019t really PowerShell ;)",
+  };
+
+  // Insertion point switches from cursor to inputRow once interactive
+  let insertTarget = terminalCursor;
+
+  function addLine(text, className) {
+    const el = document.createElement("div");
+    el.className = "terminal__line" + (className ? " " + className : "");
+    el.textContent = text;
+    insertTarget.before(el);
+  }
+
+  function addOutputLines(text) {
+    text.split("\n").forEach((line) => addLine(line, "terminal__output"));
+  }
+
+  function addCommandLine(cmd) {
     const lineEl = document.createElement("div");
     lineEl.className = "terminal__line";
 
     const promptSpan = document.createElement("span");
     promptSpan.className = "terminal__prompt";
-    promptSpan.textContent = "$ ";
+    promptSpan.textContent = PROMPT;
 
     const cmdSpan = document.createElement("span");
     cmdSpan.className = "terminal__command";
+    cmdSpan.textContent = cmd;
 
     lineEl.appendChild(promptSpan);
     lineEl.appendChild(cmdSpan);
+    insertTarget.before(lineEl);
+  }
 
-    // Insert before cursor
-    terminalCursor.before(lineEl);
+  function handleCommand(input) {
+    const cmd = input.trim().toLowerCase();
+    if (!cmd) return;
 
+    addCommandLine(input.trim());
+
+    if (cmd === "clear") {
+      terminalLines.querySelectorAll(".terminal__line").forEach((l) => l.remove());
+      return;
+    }
+
+    const response = commandResponses[cmd] || easterEggs[cmd];
+    if (response) {
+      addOutputLines(response);
+    } else {
+      addLine("Command not found: " + cmd + ". Type 'help' for available commands.", "terminal__output");
+    }
+  }
+
+  // Append a line to terminal
+  function appendLine(text, className) {
+    const el = document.createElement("div");
+    el.className = "terminal__line" + (className ? " " + className : "");
+    el.textContent = text;
+    terminalLines.appendChild(el);
+  }
+
+  function appendOutput(text) {
+    text.split("\n").forEach((line) => appendLine(line, "terminal__output"));
+  }
+
+  // Type command text character by character into an existing prompt line
+  async function typeInto(cmdSpan, text) {
     for (let i = 0; i < text.length; i++) {
       cmdSpan.textContent += text[i];
       await delay(40);
     }
-
-    await delay(300);
   }
 
-  function showOutput(text, isHTML) {
-    const outEl = document.createElement("div");
-    outEl.className = "terminal__line terminal__output";
-    if (isHTML) {
-      outEl.innerHTML = text;
-    } else {
-      outEl.textContent = text;
-    }
-    terminalCursor.before(outEl);
+  // Create a new PS> prompt line, append it, return the command span
+  function addPromptLine() {
+    const lineEl = document.createElement("div");
+    lineEl.className = "terminal__line";
+    const promptSpan = document.createElement("span");
+    promptSpan.className = "terminal__prompt";
+    promptSpan.textContent = PROMPT;
+    const cmdSpan = document.createElement("span");
+    cmdSpan.className = "terminal__command";
+    lineEl.appendChild(promptSpan);
+    lineEl.appendChild(cmdSpan);
+    terminalLines.appendChild(lineEl);
+    return cmdSpan;
+  }
+
+  // Create interactive input row
+  function enableInput() {
+    const inputRow = document.createElement("div");
+    inputRow.className = "terminal__input-row";
+
+    const promptSpan = document.createElement("span");
+    promptSpan.className = "terminal__prompt";
+    promptSpan.textContent = PROMPT;
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "terminal__input";
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("spellcheck", "false");
+    input.setAttribute("aria-label", "Terminal command input");
+
+    inputRow.appendChild(promptSpan);
+    inputRow.appendChild(input);
+
+    // Append input row and set as insertion target
+    terminalLines.appendChild(inputRow);
+    insertTarget = inputRow;
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const value = input.value;
+        input.value = "";
+        handleCommand(value);
+
+        // Move input row back to end
+        terminalLines.appendChild(inputRow);
+        input.focus();
+      }
+    });
+
+    // Focus input when clicking anywhere in terminal body
+    const terminalBody = document.querySelector(".terminal__body");
+    terminalBody.addEventListener("click", () => input.focus());
+
+    input.focus();
   }
 
   async function runTerminal() {
-    await delay(800); // initial pause
+    // 1. PS> is already visible in HTML. Wait 0.4s then type "whoami"
+    const placeholder = terminalLines.querySelector(".terminal__input-placeholder");
+    const cursor = placeholder.querySelector(".terminal__cursor");
+    cursor.remove();
+    const cmdSpan1 = document.createElement("span");
+    cmdSpan1.className = "terminal__command";
+    placeholder.appendChild(cmdSpan1);
+    placeholder.classList.remove("terminal__input-placeholder");
 
-    for (const entry of commands) {
-      await typeCommand(entry.cmd);
-      if (entry.outputHTML) {
-        showOutput(entry.outputHTML, true);
-      } else {
-        showOutput(entry.output, false);
-      }
-      await delay(600);
-    }
+    await delay(400);
+    await typeInto(cmdSpan1, "whoami");
+
+    // 2. Immediately: output + new PS>. Wait 0.4s then type "status"
+    appendOutput(commandResponses["whoami"]);
+    const cmdSpan2 = addPromptLine();
+
+    await delay(400);
+    await typeInto(cmdSpan2, "status");
+
+    // 3. Immediately: output + hint + interactive PS>
+    appendOutput(commandResponses["status"]);
+    appendLine("Type 'help' for available commands.", "terminal__output terminal__hint");
+    enableInput();
   }
 
   runTerminal();
 }
+
+// Mobile carousel for Ongoing Work
+(function () {
+  const carousel = document.querySelector(".carousel-mobile");
+  const dotsContainer = document.querySelector(".carousel-dots");
+  if (!carousel || !dotsContainer) return;
+
+  const cards = Array.from(carousel.children);
+  if (cards.length < 2) return;
+
+  // Create dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+    dot.addEventListener("click", () => {
+      cards[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll(".carousel-dot");
+
+  // Update active dot on scroll
+  let ticking = false;
+  carousel.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollLeft = carousel.scrollLeft;
+      const cardWidth = cards[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(carousel).gap) || 16;
+      const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
+      dots.forEach((d, i) => d.classList.toggle("active", i === activeIndex));
+      ticking = false;
+    });
+  });
+})();
+

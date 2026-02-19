@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maayan Margolin — Portfolio</title>
   <meta name="description" content="CS graduate, Hebrew University. Building tools people actually use.">
+  <meta property="og:title" content="Maayan Margolin — Portfolio">
+  <meta property="og:description" content="CS graduate, Hebrew University. Building tools people actually use.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://maayan-margolin.pages.dev/">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,15 +24,13 @@
     <div class="container">
       <div class="terminal">
         <div class="terminal__bar">
-          <span class="terminal__dot terminal__dot--red"></span>
-          <span class="terminal__dot terminal__dot--yellow"></span>
-          <span class="terminal__dot terminal__dot--green"></span>
-          <span class="terminal__title">maayan@portfolio:~</span>
+          <span class="terminal__title">node</span>
         </div>
         <div class="terminal__body">
           <div class="terminal__slogan">One developer, one AI teammate, zero limits.</div>
-          <div class="terminal__lines"></div>
-          <span class="terminal__cursor">█</span>
+          <div class="terminal__lines">
+            <div class="terminal__line terminal__input-placeholder"><span class="terminal__prompt">PS> </span><span class="terminal__cursor">█</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +40,7 @@
   <section id="projects">
     <div class="container">
       <h2 class="section-title">Ongoing Work</h2>
-      <div class="card-grid">
+      <div class="card-grid carousel-mobile">
 
         <a href="vehagita.html" class="card card--clickable card--accent-orange">
           <div class="card__header">
@@ -45,12 +48,6 @@
             <span class="badge">Live</span>
           </div>
           <p class="card__desc">Live community platform for Torah study with 40+ users. I own the product end-to-end &mdash; roadmap, infrastructure, deployment, and user feedback. Full-stack: React + TypeScript + Supabase, built entirely with Claude Code.</p>
-          <div class="card__tags">
-            <span class="tag tag--react">React</span>
-            <span class="tag tag--ts">TypeScript</span>
-            <span class="tag tag--supabase">Supabase</span>
-            <span class="tag tag--cloudflare">Cloudflare</span>
-          </div>
           <span class="card__link">Read more &rarr;</span>
         </a>
 
@@ -59,104 +56,16 @@
             <h3 class="card__title">WordPress Security</h3>
             <span class="badge badge--orange">Client</span>
           </div>
-          <p class="card__desc">Paid client project &mdash; designed a 5-rule layered WAF defense protecting live WordPress sites. Built an automated Playwright test runner validating zero false positives across 4 browsers. Mentored by IO01 under Nimrod Luria (ex-VP Security, monday.com).</p>
-          <div class="card__tags">
-            <span class="tag tag--cloudflare">Cloudflare WAF</span>
-            <span class="tag tag--playwright">Playwright</span>
-            <span class="tag tag--ts">TypeScript</span>
-          </div>
+          <p class="card__desc">Ongoing paid client engagement &mdash; managing a 5-rule layered WAF defense protecting live WordPress sites. Continuous monitoring, rule tuning, and automated Playwright testing to ensure zero false positives. Mentored by IO01.</p>
           <span class="card__link">Read more &rarr;</span>
         </a>
 
       </div>
+      <div class="carousel-dots"></div>
     </div>
   </section>
 
-  <!-- Academic Projects -->
-  <section id="academic" style="background: var(--gray-100); padding: 3rem 0;">
-    <div class="container">
-      <h2 class="section-title">Academic Projects</h2>
-      <div class="card-grid">
-
-        <div class="card card--compact">
-          <div class="grade-badge">90</div>
-          <div class="card__body">
-            <h3 class="card__title">Nand2Tetris</h3>
-            <p class="card__desc">Complete computer system from NAND gates through a high-level language, compiler, and OS.</p>
-            <p class="card__meta"><a href="https://github.com/maayanmar/Nand2Tetris" target="_blank" rel="noopener">GitHub</a></p>
-          </div>
-        </div>
-
-        <div class="card card--compact">
-          <div class="grade-badge">91</div>
-          <div class="card__body">
-            <h3 class="card__title">Breast Cancer Classification</h3>
-            <p class="card__desc">ML classification on the Wisconsin Breast Cancer dataset. Feature selection, model comparison, and evaluation.</p>
-            <p class="card__meta"><a href="https://github.com/maayanmar/Breast-Cancer-Classification" target="_blank" rel="noopener">GitHub</a></p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact CTA -->
-  <section class="contact-cta">
-    <div class="container">
-      <h2>Let's connect</h2>
-      <p>Looking for a developer who ships? I'm open to full-stack, backend, and security roles.</p>
-      <div class="contact-cta__links">
-        <a href="mailto:maayan.margolin@mail.huji.ac.il">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
-          Email
-        </a>
-        <a href="https://www.linkedin.com/in/maayan-margolin/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/maayanmar" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a href="index.html" class="nav__logo" style="color:var(--white);"><span class="nav__logo-first">Maayan</span> Margolin<span class="nav__logo-dot">.</span></a>
-          <p>Full-stack developer building production apps with modern tools and AI-assisted workflows.</p>
-        </div>
-        <div>
-          <h4 class="footer__heading">Pages</h4>
-          <ul class="footer__nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="vehagita.html">VeHagita</a></li>
-            <li><a href="wordpress-security.html">WordPress Security</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="cv.html">CV</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__heading">Links</h4>
-          <ul class="footer__nav">
-            <li><a href="https://www.linkedin.com/in/maayan-margolin/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://github.com/maayanmar" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://wehagita.com" target="_blank" rel="noopener">wehagita.com</a></li>
-            <li><a href="mailto:maayan.margolin@mail.huji.ac.il">Email</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <span class="footer__text">&copy; 2026 Maayan Margolin</span>
-        <span class="footer__built">Built with <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></span>
-      </div>
-    </div>
-  </footer>
-
+  <script src="js/footer.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
